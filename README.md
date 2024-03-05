@@ -1,2 +1,2 @@
-# development_exersize_repository
+# dev_exc_repository
 Djangoアプリ開発演習用のリモートリポジトリ
