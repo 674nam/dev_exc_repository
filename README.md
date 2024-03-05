@@ -1,0 +1,2 @@
+# development_exersize_repository
+Djangoアプリ開発演習用のリモートリポジトリ
