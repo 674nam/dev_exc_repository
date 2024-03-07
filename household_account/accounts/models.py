@@ -4,7 +4,6 @@ from django.contrib.auth.models import (BaseUserManager,
                                         PermissionsMixin)
 from django.utils.translation import gettext_lazy as _
 
-
 class UserManager(BaseUserManager):
     def _create_user(self, email, account_id, password, **extra_fields):
         email = self.normalize_email(email)
@@ -16,7 +15,7 @@ class UserManager(BaseUserManager):
 
     def create_user(self, email, account_id, password=None, **extra_fields):
         extra_fields.setdefault('is_active', True)
-        extra_fields.setdefault('is_staff', False)
+        extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(
             email=email,
@@ -36,7 +35,6 @@ class UserManager(BaseUserManager):
             **extra_fields,
         )
 
-
 class User(AbstractBaseUser, PermissionsMixin):
 
     account_id = models.CharField(
@@ -49,29 +47,25 @@ class User(AbstractBaseUser, PermissionsMixin):
         unique=True
     )
     first_name = models.CharField(
-        verbose_name=_("first_name"),
+        verbose_name=_("名前"),
         max_length=150,
         null=True,
         blank=False
     )
     last_name = models.CharField(
-        verbose_name=_("last_name"),
+        verbose_name=_("家名"),
         max_length=150,
         null=True,
         blank=False
     )
-    birth_date = models.DateField(
-        verbose_name=_("birth_date"),
-        blank=True,
-        null=True
-    )
+
     is_superuser = models.BooleanField(
         verbose_name=_("is_superuer"),
         default=False
     )
     is_staff = models.BooleanField(
         verbose_name=_('staff status'),
-        default=False,
+        default=True,
     )
     is_active = models.BooleanField(
         verbose_name=_('active'),
