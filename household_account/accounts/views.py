@@ -2,7 +2,10 @@ from django.contrib.auth import login, authenticate
 from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.views import LoginView as BaseLoginView, LogoutView as BaseLogoutView
 from django.urls import reverse_lazy
+from django.contrib import messages
+
 from .forms import SignUpForm, LoginForm # サインアップ、ログインフォーム
+
 
 class IndexView(TemplateView): # """ ホームビュー """
     template_name = "index.html"
@@ -18,7 +21,9 @@ class SignupView(CreateView): # """ ユーザー登録用ビュー """
         password = form.cleaned_data.get("password1")
         user = authenticate(account_id=account_id, password=password)
         login(self.request, user)
+        messages.success(self.request, '新規ユーザーを登録しました。')
         return response
+
 
 class LoginView(BaseLoginView): # ログイン
     form_class = LoginForm

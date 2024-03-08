@@ -16,4 +16,4 @@ class UserAdmin(admin.ModelAdmin):
     )
 
 admin.site.register(User, UserAdmin)  # Userモデルを登録
-admin.site.unregister(Group)  # Groupモデルは不要のため非表示にします
+admin.site.unregister(Group)  # Groupモデルは不要のため非表示
